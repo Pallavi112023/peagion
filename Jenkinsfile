@@ -9,9 +9,20 @@ python3 -m pip freeze'''
     }
 
     stage('group of test') {
-      steps {
-        sh '''ls -la
+      parallel {
+        stage('group of test') {
+          steps {
+            sh '''ls -la
 python3 -V'''
+          }
+        }
+
+        stage('messages') {
+          steps {
+            echo 'keepcalm'
+          }
+        }
+
       }
     }
 
